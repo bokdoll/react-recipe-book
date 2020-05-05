@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Recipe from "../components/Recipe";
+import "./List.css"
 
 class List extends React.Component{
     state = {
@@ -13,7 +14,7 @@ class List extends React.Component{
         const api_key = "56b7e9a28974c90636a027db4dd88f31f32dabf447f99b9603ea276c5d29a11c"
         const service_url = "Grid_20150827000000000226_1"
         const { data : {Grid_20150827000000000226_1 : {row}}} = 
-            await axios.get(`${api_url}/openapi/${api_key}/json/${service_url}/1/5`);
+            await axios.get(`${api_url}/openapi/${api_key}/json/${service_url}/1/44`);
 
         this.setState({ recipeList : row , isLoading:false });
         console.log(row);
@@ -41,6 +42,7 @@ class List extends React.Component{
                                             img = {recipe.IMG_URL}
                                             summary = {recipe.SUMRY}
                                             name = {recipe.RECIPE_NM_KO}
+                                            time = {recipe.COOKING_TIME}
                                             level = {recipe.LEVEL_NM}
                                     />
                                 ))
