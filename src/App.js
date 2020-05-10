@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, HashRouter } from 'react-router-dom';
-import List from "./routes/List"
+import RecipeList from "./routes/RecipeList"
 
 function App() {
   return <HashRouter>
-    <Route path="/" component={List}/>
+    <Route path="/" component={RecipeList}/>
   </HashRouter>;
 }
 
