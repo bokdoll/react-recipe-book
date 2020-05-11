@@ -4,6 +4,31 @@ import clock_img from "../resources/clock_img"
 import level_img from "../resources/level_img"
 import styled from "styled-components";
 
+function Recipe({id, name, summary, time, level, img}){
+    return (
+        <RecipeItem>
+            <RecipeImg src={img} alt={name} title={name}/>
+            <RecipeName>{name}</RecipeName>
+            <RecipeSum>{summary.slice(0, 61)}</RecipeSum>
+            <RecipeAdd>
+                <AddImg src={ clock_img } alt="소요 시간" title="소요 시간"/>
+                <AddText>{time}</AddText>
+                <AddImg src={level_img} alt="난이도" title="난이도"/>
+                <AddText>{level}</AddText>
+            </RecipeAdd>
+        </RecipeItem>
+    );
+}
+
+Recipe.propTypes = {
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    summary : PropTypes.string.isRequired,
+    level : PropTypes.string.isRequired,
+    img : PropTypes.string.isRequired
+}
+
+
 const RecipeItem = styled.div`
     background-color: white;
     margin-bottom: 40px;
@@ -61,29 +86,5 @@ const RecipeSum = styled.h2`
     font-weight: 400;
     display: flex;
 `
-
-function Recipe({id, name, summary, time, level, img}){
-    return (
-        <RecipeItem>
-            <RecipeImg src={img} alt={name} title={name}/>
-            <RecipeName>{name}</RecipeName>
-            <RecipeSum>{summary.slice(0, 61)}</RecipeSum>
-            <RecipeAdd>
-                <AddImg src={ clock_img } alt="소요 시간" title="소요 시간"/>
-                <AddText>{time}</AddText>
-                <AddImg src={level_img} alt="난이도" title="난이도"/>
-                <AddText>{level}</AddText>
-            </RecipeAdd>
-        </RecipeItem>
-    );
-}
-
-Recipe.propTypes = {
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    summary : PropTypes.string.isRequired,
-    level : PropTypes.string.isRequired,
-    img : PropTypes.string.isRequired
-}
 
 export default  Recipe;

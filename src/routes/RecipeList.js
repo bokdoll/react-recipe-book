@@ -1,70 +1,43 @@
-import React, {useState, useEffect} from "react";
-import axios from "axios";
-import Recipe from "../components/Recipe";
+import React, { useContext } from "react";
+import Recipe from "../components/Recipe.jsx";
 import styled from "styled-components";
-
-const useFetch = (url) => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [recipeList, setRecipeList] = useState([]);
-    const [error, setError] = useState("");
-
-    const callUrl = async() => {
-        try {
-            const {data : {Grid_20150827000000000226_1 : {row}}} = await axios.get(url);
-
-            setRecipeList(row);
-        } catch {
-            setError("😭");
-        } finally {
-            setIsLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        callUrl();
-    }, []);
-
-    return {isLoading, recipeList, error};
-}
+import { RecipeContext } from "./Home.js";
 
 
 const RecipeList = () => {
-    const api_url = "http://211.237.50.150:7080";
-    const api_key = "56b7e9a28974c90636a027db4dd88f31f32dabf447f99b9603ea276c5d29a11c";
-    const service_url = "Grid_20150827000000000226_1";
-    const url = `${api_url}/openapi/${api_key}/json/${service_url}/1/44`;
-
-    const {isLoading, recipeList} = useFetch(url);
-
+    const {isLoading, recipeList} = useContext(RecipeContext);
+    // console.log(isLoading);
     return (
-        <div>
-        {/* <form>
-            <input type="string"/>
-            <button>찾기</button>
-        </form> */}
-        <Container>
-                {
-                    isLoading ?
-                    (<Loader> <LoadingText>👀</LoadingText></Loader>) :
-                        (
-                            <Recipes>
+        // <RecipeContext.Consumer>
+        //     {
+        //         (isLoading, recipeList) => (
+                <>
+                    <Container>
                             {
-                                recipeList.map( recipe =>(
-                                    <Recipe key = {recipe.RECIPE_ID}
-                                            id = {recipe.RECIPE_ID}
-                                            img = {recipe.IMG_URL}
-                                            summary = {recipe.SUMRY}
-                                            name = {recipe.RECIPE_NM_KO}
-                                            time = {recipe.COOKING_TIME}
-                                            level = {recipe.LEVEL_NM}
-                                    />
-                                ))
+                                isLoading ?
+                                (<Loader><LoadingText> 👀 </LoadingText></Loader>) :
+                                    (
+                                        <Recipes>
+                                        {
+                                            recipeList.map( recipe =>(
+                                                <Recipe key = {recipe.RECIPE_ID}
+                                                        id = {recipe.RECIPE_ID}
+                                                        img = {recipe.IMG_URL}
+                                                        summary = {recipe.SUMRY}
+                                                        name = {recipe.RECIPE_NM_KO}
+                                                        time = {recipe.COOKING_TIME}
+                                                        level = {recipe.LEVEL_NM}
+                                                />
+                                            ))
+                                        }
+                                        </Recipes>
+                                    )
                             }
-                            </Recipes>
-                        )
-                }
-            </Container>
-    </div>
+                        </Container>
+                    </>
+        //         )
+        //     }
+        // </RecipeContext.Consumer>
     );
 }
 
@@ -95,7 +68,7 @@ const Recipes = styled.div`
     border-color: #c1c1c1;
     padding: 50px;
     width: 80%;
-    padding-top: 70px;
+    padding-top: 50px;
 `
 
 export default RecipeList;
