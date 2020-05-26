@@ -1,22 +1,50 @@
-import React from "react";
+import React, {useRef, useEffect} from "react";
 import PropTypes from "prop-types";
 import clock_img from "../resources/clock_img"
 import level_img from "../resources/level_img"
+import { Link }from "react-router-dom";
 import styled from "styled-components";
 
 function Recipe({id, name, summary, time, level, img}){
+
+    // lazy Loading
+    const lazyLoadRef = useRef();
+    const lazyLoadOption = { root: null, threshold: 0.4 };
+    const lazyLoadhandler = (entries, observer) => {
+    const { target } = entries[0];
+    if (entries[0].isIntersecting) {
+        target.src = target.dataset.src;
+        lazyLoadObserver.unobserve(target);
+    }
+    };
+    const lazyLoadObserver = new IntersectionObserver(lazyLoadhandler, lazyLoadOption);
+
+    useEffect(() => {
+        lazyLoadObserver.observe(lazyLoadRef.current);
+    }, [])
+    
+
     return (
-        <RecipeItem>
-            <RecipeImg src={img} alt={name} title={name}/>
-            <RecipeName>{name}</RecipeName>
-            <RecipeSum>{summary.slice(0, 61)}</RecipeSum>
-            <RecipeAdd>
-                <AddImg src={ clock_img } alt="소요 시간" title="소요 시간"/>
-                <AddText>{time}</AddText>
-                <AddImg src={level_img} alt="난이도" title="난이도"/>
-                <AddText>{level}</AddText>
-            </RecipeAdd>
-        </RecipeItem>
+        <Link to={{
+            pathname: `/recipe/${name}`,
+            state: {
+                name
+            }
+        }}
+        style={{ textDecoration: 'none' }}
+        >
+            <RecipeItem>
+                <RecipeImg ref={lazyLoadRef} data-src={img} alt={name} title={name}/>
+                <RecipeName>{name}</RecipeName>
+                <RecipeSum>{summary.slice(0, 61)}</RecipeSum>
+                <RecipeAdd>
+                    <AddImg src={ clock_img } alt="소요 시간" title="소요 시간"/>
+                    <AddText>{time}</AddText>
+                    <AddImg src={level_img} alt="난이도" title="난이도"/>
+                    <AddText>{level}</AddText>
+                </RecipeAdd>
+            </RecipeItem>
+        </Link>
     );
 }
 
@@ -41,6 +69,7 @@ const RecipeItem = styled.div`
     0 18px 36px -18px rgba(0, 0, 0, 0.3), 0 -12px 36px -8px rgba(0, 0, 0, 0.025);
     padding-bottom: 10px;
 `
+
 const RecipeImg = styled.img`
     position: relative;
     max-width: 335px;

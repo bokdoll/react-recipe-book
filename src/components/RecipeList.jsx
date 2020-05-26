@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
-import Recipe from "../components/Recipe.jsx";
+import React, { useContext} from "react";
+import Recipe from "./Recipe.jsx";
 import styled from "styled-components";
-import { RecipeContext } from "./Home.js";
+import { RecipeContext } from "../routes/Home.js";
 
 
 const RecipeList = () => {
+    console.log("RecipeList");
     const {isLoading, recipeList} = useContext(RecipeContext);
-    // console.log(isLoading);
+
     return (
-        // <RecipeContext.Consumer>
-        //     {
-        //         (isLoading, recipeList) => (
                 <>
                     <Container>
                             {
@@ -35,9 +33,6 @@ const RecipeList = () => {
                             }
                         </Container>
                     </>
-        //         )
-        //     }
-        // </RecipeContext.Consumer>
     );
 }
 
@@ -67,7 +62,7 @@ const Recipes = styled.div`
     border-width: 3px;
     border-color: #c1c1c1;
     padding: 50px;
-    width: 80%;
+    width: 75%;
     padding-top: 50px;
 `
 
