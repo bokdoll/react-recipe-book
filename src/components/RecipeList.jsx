@@ -1,7 +1,7 @@
 import React, { useContext} from "react";
-import Recipe from "./Recipe.jsx";
+import Recipe from "./Recipe";
 import styled from "styled-components";
-import { RecipeContext } from "../routes/Home.js";
+import { RecipeContext } from "../routes/Home";
 
 
 const RecipeList = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import RecipeList from '../components/RecipeList.jsx';
-import Header from '../components/Header.jsx';
+import RecipeList from '../components/RecipeList';
+import Header from '../components/Header';
 import useFetch from "../hooks/useFetch";
 
 export const RecipeContext = React.createContext();    // 상위의 스토어 역할

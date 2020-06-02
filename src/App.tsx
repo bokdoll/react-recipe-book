@@ -3,7 +3,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import Home from './routes/Home';
 import RecipeDetail from './routes/RecipeDetail'
 
-function App() {
+function App(): JSX.Element {
   return <HashRouter>
     <Route path="/" exact={true} component={Home}/>
     <Route path="/recipe/:name" component={RecipeDetail}/>
