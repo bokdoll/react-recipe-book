@@ -24,5 +24,5 @@ const Home = ()=> {
 }
 
 export default Home;
-//<Header /><span>🧡</span>
+//<Header />
 //<RecipeContext.Provider value = {{isLoading, recipeList}>

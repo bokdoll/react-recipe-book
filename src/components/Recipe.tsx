@@ -18,9 +18,15 @@ function Recipe({id, name, summary, time, level, img}: recipeProps) : JSX.Elemen
     const level_img = require('../resources/level_img');
 
     // lazy Loading
+<<<<<<< HEAD:src/components/Recipe.tsx
     // const lazyLoadRef : any = useRef();
     // const lazyLoadOption = { root: null, threshold: 0.4 };
     // const lazyLoadhandler = (entries : any, observer : any) => {
+=======
+    // const lazyLoadRef = useRef();
+    // const lazyLoadOption = { root: null, threshold: 0.4 };
+    // const lazyLoadhandler = (entries, observer) => {
+>>>>>>> 8b58989818415bc3f1c8d6b9eeeed929d87c44a7:src/components/Recipe.tsx
     // const { target } = entries[0];
     // if (entries[0].isIntersecting) {
     //     target.src = target.dataset.src;
