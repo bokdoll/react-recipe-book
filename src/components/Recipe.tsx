@@ -1,27 +1,37 @@
 import React, {useRef, useEffect} from "react";
 import PropTypes from "prop-types";
-import clock_img from "../resources/clock_img"
-import level_img from "../resources/level_img"
 import { Link }from "react-router-dom";
 import styled from "styled-components";
 
-function Recipe({id, name, summary, time, level, img}){
+export type recipeProps = {
+    id: number;
+    name: string;
+    summary: string;
+    time: string;
+    level: string;
+    img: string;
+
+}
+
+function Recipe({id, name, summary, time, level, img}: recipeProps) : JSX.Element{
+    const clock_img = require('../resources/clock_img');
+    const level_img = require('../resources/level_img');
 
     // lazy Loading
-    const lazyLoadRef = useRef();
-    const lazyLoadOption = { root: null, threshold: 0.4 };
-    const lazyLoadhandler = (entries, observer) => {
-    const { target } = entries[0];
-    if (entries[0].isIntersecting) {
-        target.src = target.dataset.src;
-        lazyLoadObserver.unobserve(target);
-    }
-    };
-    const lazyLoadObserver = new IntersectionObserver(lazyLoadhandler, lazyLoadOption);
+    // const lazyLoadRef : any = useRef();
+    // const lazyLoadOption = { root: null, threshold: 0.4 };
+    // const lazyLoadhandler = (entries : any, observer : any) => {
+    // const { target } = entries[0];
+    // if (entries[0].isIntersecting) {
+    //     target.src = target.dataset.src;
+    //     lazyLoadObserver.unobserve(target);
+    // }
+    // };
+    // const lazyLoadObserver = new IntersectionObserver(lazyLoadhandler, lazyLoadOption);
 
-    useEffect(() => {
-        lazyLoadObserver.observe(lazyLoadRef.current);
-    }, [])
+    // useEffect(() => {
+    //     lazyLoadObserver.observe(lazyLoadRef.current);
+    // }, [])
     
 
     return (
@@ -34,9 +44,9 @@ function Recipe({id, name, summary, time, level, img}){
         style={{ textDecoration: 'none' }}
         >
             <RecipeItem>
-                <RecipeImg ref={lazyLoadRef} data-src={img} alt={name} title={name}/>
+                <RecipeImg src={img} alt={name} title={name}/>
                 <RecipeName>{name}</RecipeName>
-                <RecipeSum>{summary.slice(0, 61)}</RecipeSum>
+                <RecipeSum>{summary}</RecipeSum>
                 <RecipeAdd>
                     <AddImg src={ clock_img } alt="소요 시간" title="소요 시간"/>
                     <AddText>{time}</AddText>
