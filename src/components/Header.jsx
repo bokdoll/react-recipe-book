@@ -7,7 +7,7 @@ const Header = () => {
     console.log("Header");
 
     const [searchItem, setSearchItem] = useState("");
-    // const {recipeList} = useContext(RecipeContext);
+    const {recipeList} = useContext(RecipeContext);
 
 
     const searchInput = useRef();
@@ -24,6 +24,7 @@ const Header = () => {
     return (
         <>
             <Title>Recipe Book</Title>
+            <span>{recipeList.length}개의 레시피가 있습니다.</span>
             <input ref={searchInput} placeholder="요리를 검색해보세요!" value={searchItem} onChange ={onChange} />
             <button onClick={onRest}>🔍</button>
         </>
