@@ -17,14 +17,21 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-<<<<<<< HEAD
-    "jsx": "react", // jsx 지원
-    "jsxFactory": "React.createElement", // jsx 팩토리 함수 설정,
-=======
     "jsx": "react"
->>>>>>> 8b58989818415bc3f1c8d6b9eeeed929d87c44a7
   },
   "include": [
     "src"
   ]
 }
+
+// <<<<<<< HEAD
+//     "jsx": "react", // jsx 지원
+//     "jsxFactory": "React.createElement", // jsx 팩토리 함수 설정,
+// =======
+//     "jsx": "react"
+// >>>>>>> 8b58989818415bc3f1c8d6b9eeeed929d87c44a7
+//   },
+//   "include": [
+//     "src"
+//   ]
+// }
